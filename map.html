@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmbMzUQSswwzfppXNHALOovsrO7YQrxI0&sensor=true">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(21.000, 78.000),
+          zoom: 6
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var myLatlng = new google.maps.LatLng(21.000,78.000);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title:"Hello World!"
+        });
+        marker.setMap(map);
+      
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<u><h1 class="firstHeading">School Name</h1></u>'+
+            '<h2 class="firstHeading">Indent Qty Prediction: prediction val</h1>'+
+            '<div id="bodyContent">'+
+            '<table><tr><td><b>Route Code: </b> route code</td>'+'<td><b>Location: </b> hkh vs vkh</td></tr>'+
+            '<tr><td><b>Latitude: </b> lat val</td>'+'<td><b>Longitude: </b> long val</td></tr>'+
+            '<tr><td><b>Type: </b> i.e. MDMML</td>'+'<td><b>Class: </b> i.e. B-1-5</td></tr>'+
+            '<tr><td><b>Range: </b> i.e. Block Education Officer</td>'+'<td><b>School: </b> school name</td></tr>'+
+            '<tr><td><b>Indent ID: </b> indentid</td>'+'<td><b>Description: </b> desc</td></tr>'+
+            '<tr><td><b>SG Description: </b> sg desc</td>'+'<td><b>Bomname: </b> bomname</td></tr>'+
+            '</div>'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>

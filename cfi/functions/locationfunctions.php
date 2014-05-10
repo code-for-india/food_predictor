@@ -20,8 +20,7 @@ $sdb = dbconnect();
 $sc = new MongoCollection($sdb,'locations');
 $lnglat = array($longitude, $lattitude);
 $LocationsinArea = $sc->aggregate(
-array('$geoNear'=>array('near' => $lnglat, 'maxDistance' =>$distance, 'distanceField'=>'dist.calculated', 'spherical' => true)),
-array('$project' => array('_id' => 1))
+array('$geoNear'=>array('near' => $lnglat, 'maxDistance' =>$distance, 'distanceField'=>'dist.calculated', 'spherical' => true))
 );
 $AllLocations = $LocationsinArea['result'];
 return $AllLocations;
@@ -37,5 +36,17 @@ array('$project' => array('_id' => 1))
 $RCLocations = $LocationsWithRC['result'];
 return $RCLocations;
 
+}
+
+
+function ConDataofHKHSchool($SchoolName){
+$sdb = dbconnect();
+$sc = new MongoCollection($sdb,'consumptiondata');
+$DataofSchool = $sc->aggregate(
+array('$match' => array('SGDESCRIPTION' =>$SchoolName)),
+array('$project' => array('_id' => 0,'Indentqty'=>1,'bomname'=>1,'INDENTDATE'=>1 ))
+);
+$SchoolData = $DataofSchool['result'];
+return $SchoolData;
 }
 ?>

@@ -103,3 +103,17 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+input.long {
+  width: 100%;
+}
+
+.input-group-lg {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#school {
+  padding-top:5px;
+  padding-bottom: 5px;
+}

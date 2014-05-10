@@ -8,6 +8,14 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATO
         $sdb = $smongo->selectDB($DATABASE_NAME);
 	return $sdb;
       }
+
+      function FindDistinctValues($coll, $field) {
+        $sdb = dbconnect();
+        $coll = new MongoCollection($sdb,$coll);
+        $rval = $coll->distinct($field);
+        return $rval; 
+      }
+
 //Updating a field in collection and inserting if nothing there
 	function updateColl($collection,$arr,$ary)
       {
@@ -53,11 +61,11 @@ include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATO
       
       }
 
-      function FindAllAndFilter($coll,$arr)
+      function FindAllAndFilter($coll, $criterion) 
       {
 	$sdb = dbconnect();
         $collection = new MongoCollection($sdb,$coll);
-        $cursor = $collection->find(array(),$arr);
+        $cursor = $collection->find($criterion);
         $array = iterator_to_array($cursor);
         return $array;
       
