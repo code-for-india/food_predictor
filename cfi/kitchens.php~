@@ -1,0 +1,15 @@
+<?php
+include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR  . 'functions/locationfunctions.php');
+
+$sensorId = $_GET['sensorid'];
+
+$SensorInfo =SensorInfo($sensorId) ;
+
+echo "<h1><font color ='red'>";
+echo $SensorInfo['name']; echo "</h1></font>";
+echo "<br>";
+
+
+echo json_encode(PollutantAtSensor('so2',$sensorId));
+
+?>
