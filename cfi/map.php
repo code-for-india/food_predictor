@@ -103,7 +103,7 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
     } else {
       map.setCenter(place.geometry.location);
-      map.setZoom(15);  // Why 15? 17 looks even good.
+      map.setZoom(12);  // Why 15? 17 looks even good.
     }
     marker.setIcon(/** @type {google.maps.Icon} */({
       url: place.icon,
@@ -189,7 +189,7 @@ var $marker$onelocation = new google.maps.Marker({
     map: map 
     });
 var $window$onelocation=new google.maps.InfoWindow({
-    content: '<font color=red><a href=\"location.php?locationid=$onelocation\">$LocationName</font><br>"; echo $latitude.$longitude;?></a>'
+    content: '<div id=content><div id=siteNotice></div><u><h1 class=firstHeading>$LocationName</h1></u><div id=bodyContent><table><tr><td><b>Latitude: </b> $latitude</td><td><b>Longitude: </b> $longitude</td></tr><font color=red><a href=\"location.php?locationid=$onelocation\">View Prediction</font><br></div></div>";;?></a>'
 <?php
 echo "
     });

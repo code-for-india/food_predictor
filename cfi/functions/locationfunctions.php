@@ -26,6 +26,8 @@ $AllLocations = $LocationsinArea['result'];
 return $AllLocations;
 }
 
+
+
 function LocationsWithRouteCode($RCode){
 $sdb = dbconnect();
 $sc = new MongoCollection($sdb,'locations');
